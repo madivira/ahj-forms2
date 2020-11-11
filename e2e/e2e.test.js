@@ -42,8 +42,27 @@ describe('Validator form', () => {
     const inputCost = await page.$('.cost-form');
     await inputCost.type('15000');
     const btn = await page.$('.save-submit');
-    btn.click();
+    await btn.click();
     await page.waitForSelector('.column-title');
+  });
+
+  test('hidden', async () => {
+    await page.goto(baseUrl);
+    const create = await page.$('.create');
+    await create.click();
+    const inputName = await page.$('.title-form');
+    await inputName.type('name');
+    const inputCost = await page.$('.cost-form');
+    await inputCost.type('15000');
+    const btn = await page.$('.save-submit');
+    await btn.click();
+    await page.waitForSelector('.hidden');
+  });
+  test('active', async () => {
+    await page.goto(baseUrl);
+    const create = await page.$('.create');
+    await create.click();
+    await page.waitForSelector('.active');
   });
 
   test('active cost', async () => {
@@ -55,7 +74,7 @@ describe('Validator form', () => {
     const inputCost = await page.$('.cost-form');
     await inputCost.type('15000');
     const btn = await page.$('.save-submit');
-    btn.click();
+    await btn.click();
     await page.waitForSelector('.column-cost');
   });
 
@@ -68,12 +87,13 @@ describe('Validator form', () => {
     const inputCost = await page.$('.cost-form');
     await inputCost.type('15000');
     const btn = await page.$('.save-submit');
-    btn.click();
+    await btn.click();
+    await page.waitForSelector('.hidden');
     const update = await page.$('span.update');
     await update.click();
     await inputName.type('Title');
     await inputCost.type('5000');
-    btn.click();
+    await btn.click();
     await page.waitForSelector('.column-cost');
   });
 });

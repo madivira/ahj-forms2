@@ -36,6 +36,8 @@ function updateElement() {
   update.forEach((element) => {
     element.addEventListener('click', (e) => {
       createTable.style.display = 'block';
+      createTable.classList.add('active');
+      createTable.classList.remove('hidden');
       elTr = e.target.closest('tr');
       document.querySelector('input.title-form').value = elTr.querySelector('.column-title').textContent;
       document.querySelector('input.cost-form').value = elTr.querySelector('.column-cost').textContent;
@@ -76,6 +78,8 @@ deleteElement();
 
 create.addEventListener('click', () => {
   createTable.style.display = 'block';
+  createTable.classList.add('active');
+  createTable.classList.remove('hidden');
 });
 
 createTable.addEventListener('submit', (e) => {
@@ -99,6 +103,8 @@ createTable.addEventListener('submit', (e) => {
     updateElement();
     deleteElement();
     createTable.style.display = 'none';
+    createTable.classList.remove('active');
+    createTable.classList.add('hidden');
     form[0].value = '';
     form[1].value = '';
     elTr = '';
@@ -109,6 +115,8 @@ createTable.addEventListener('submit', (e) => {
 closeSubmit.addEventListener('click', (e) => {
   e.preventDefault();
   createTable.style.display = 'none';
+  createTable.classList.remove('active');
+  createTable.classList.add('hidden');
   const inputTable = createTable.querySelectorAll('input');
   for (const el of inputTable) {
     el.value = '';
